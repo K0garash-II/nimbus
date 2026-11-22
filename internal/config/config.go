@@ -9,6 +9,7 @@ import (
 
 type Config struct {
 	HTTPAddr string
+	DatabaseURL string
 }
 
 func LoadConfig() (*Config, error) {
@@ -16,10 +17,15 @@ func LoadConfig() (*Config, error) {
 
 	config := Config{
 		HTTPAddr: os.Getenv("HTTP_ADDR"),
+		DatabaseURL: os.Getenv("DATABASE_URL"),
 	}
 
 	if config.HTTPAddr == "" {
 		return nil, errors.New("missing required http configuration")
+	}
+
+	if config.DatabaseURL == "" {
+		return nil, errors.New("missing required database configuration")
 	}
 
 	return &config, nil
