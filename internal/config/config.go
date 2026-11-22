@@ -8,7 +8,7 @@ import (
 )
 
 type Config struct {
-	HTTPAddr string
+	HTTPAddr    string
 	DatabaseURL string
 }
 
@@ -16,7 +16,7 @@ func LoadConfig() (*Config, error) {
 	_ = godotenv.Load()
 
 	config := Config{
-		HTTPAddr: os.Getenv("HTTP_ADDR"),
+		HTTPAddr:    os.Getenv("HTTP_ADDR"),
 		DatabaseURL: os.Getenv("DATABASE_URL"),
 	}
 

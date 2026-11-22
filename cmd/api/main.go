@@ -3,10 +3,11 @@ package main
 import (
 	"log/slog"
 	"net/http"
-	"nimbus/internal/config"
-	"nimbus/internal/httpapi"
 	"os"
 	"time"
+
+	"nimbus/internal/config"
+	"nimbus/internal/httpapi"
 )
 
 func main() {
