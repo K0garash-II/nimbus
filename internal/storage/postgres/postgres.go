@@ -7,7 +7,11 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-func NewStore(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
+type Store struct {
+	pool *pgxpool.Pool
+}
+
+func NewStore(ctx context.Context, databaseURL string) (*Store, error) {
 	pool, err := pgxpool.New(ctx, databaseURL)
 	if err != nil {
 		return nil, err
@@ -19,5 +23,9 @@ func NewStore(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
 		return nil, fmt.Errorf("connection failed: %w", err)
 	}
 
-	return pool, nil
+	return &Store{pool: pool}, nil
+}
+
+func (s *Store) Close() {
+	s.pool.Close()
 }
