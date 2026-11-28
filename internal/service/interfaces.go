@@ -1,21 +1,21 @@
 package service
 
 import (
-    "context"
+	"context"
 
-    "nimbus/internal/user"
+	"nimbus/internal/user"
 )
 
 type Service struct {
-    store Store
+	store Store
 }
 
 func NewService(store Store) *Service {
-    return &Service{
-        store: store,
-    }
+	return &Service{
+		store: store,
+	}
 }
 
 type Store interface {
-    Register(ctx context.Context, email, passwordHash string) (user.User, error)
+	Register(ctx context.Context, email, passwordHash string) (user.User, error)
 }
